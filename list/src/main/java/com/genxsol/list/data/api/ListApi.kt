@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface ListApi {
 
-    @GET("/genxsol/api/main/list-page-paging-first")
+    @GET("/genxsolutions/api-json/main/list-page-paging-first")
     suspend fun getList() : Response<ListResponse>
 
 }

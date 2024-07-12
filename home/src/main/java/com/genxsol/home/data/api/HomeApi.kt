@@ -6,7 +6,6 @@ import retrofit2.http.GET
 
 interface HomeApi {
 
-    @GET("/genxsol/api/main/home")
+    @GET("/genxsolutions/api-json/main/home")
     suspend fun getHome(): Response<HomeResponse>
-
 }
