@@ -1,43 +1,39 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
+    id(libs.plugins.ksp.get().toString())
+    id(libs.plugins.daggerHilt.get().toString())
 }
 
 android {
-    namespace = "com.genxsol.network"
-    compileSdk = 34
+    namespace = libs.plugins.networkNameSpace.get().toString()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 }
 
 dependencies {
+    implementation(project(":core"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    //region D.I
+    implementation(libs.hilt.core)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.ksp.compiler)
+    //endregion
+
+    //region Data Dependencies
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson.converter)
+    //endregion
 }

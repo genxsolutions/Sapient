@@ -1,46 +1,38 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id(libs.plugins.daggerHilt.get().toString())
+    id(libs.plugins.ksp.get().toString())
 }
 
 android {
-    namespace = "com.genxsol.sapiant"
-    compileSdk = 34
+    namespace = libs.plugins.mainNamespace.get().toString()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.genxsol.sapiant"
-        minSdk = 24
-        targetSdk = 34
+        applicationId = libs.plugins.mainNamespace.get().toString()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk =libs.versions.compileSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerVersion.get()
     }
     packaging {
         resources {
@@ -50,20 +42,34 @@ android {
 }
 
 dependencies {
+    implementation(project(":navigation"))
+    implementation(project(":core"))
+    implementation(project(":home"))// just home Compose Screen
+    implementation(project(":list")) // just list Compose Screen
+    implementation(project(":detail")) // just list Compose Screen
+    implementation(project(":network"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    //region D.I Dependencies
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.ksp.compiler)
+    implementation(libs.hilt.core)
+    //endregion
+
+    //region Compose Dependencies
+    implementation(libs.compose.activity)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.compose.ui.material)
+    androidTestImplementation(platform(libs.compose.bom))
+    //endregion
+
+    //region Core Dependencies
+    implementation(libs.appcompat)
+    implementation(libs.android.core)
+    //endregion
+
+    implementation(libs.lifecycle.ktx)
+
 }
