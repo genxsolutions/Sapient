@@ -5,31 +5,32 @@ import com.genxsol.detail.data.api.model.ItemDetailResponse
 import com.genxsol.detail.data.api.model.OtherProductResponse
 import com.genxsol.detail.data.domain_impl.mapper.mapToItemDetail
 import com.genxsol.detail.data.domain_impl.usecase.GetItemDetailUseCaseImpl
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import io.mockk.verify
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 class GetItemDetailUseCaseTest {
 
-    @Mock
+    @MockK
     private lateinit var dataSource: DetailDataSource
 
     private lateinit var getItemDetailUseCaseImpl: GetItemDetailUseCaseImpl
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        dataSource = mock()
+        MockKAnnotations.init(this)
+        dataSource = mockk()
         getItemDetailUseCaseImpl = GetItemDetailUseCaseImpl(dataSource, Dispatchers.Unconfined)
     }
 
@@ -58,14 +59,14 @@ class GetItemDetailUseCaseTest {
             otherProducts = mockOtherProducts
         )
 
-        `when`(dataSource.getDetail()).thenReturn(mockResponse)
+        coEvery { dataSource.getDetail() } returns mockResponse
 
         // Act
         val result = getItemDetailUseCaseImpl.getDetail().first()
 
         // Assert
         assertEquals(mockResponse.mapToItemDetail(), result)
-        verify(dataSource).getDetail()
+        verify { runBlocking { dataSource.getDetail() } }
     }
 
 }

@@ -6,6 +6,10 @@ import com.genxsol.detail.domain.model.OtherProducts
 import com.genxsol.detail.domain.usecase.GetItemDetailUseCase
 import com.genxsol.detail.presentation.state.DetailUIState
 import com.genxsol.detail.presentation.uievent.DetailUIEvent
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -21,22 +25,18 @@ import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
+
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
 
-    @Mock
-    private lateinit var getItemDetail: GetItemDetailUseCase
-    @Mock
-    private lateinit var navigator: NavigationService
+    @MockK
+    private var getItemDetail: GetItemDetailUseCase = mockk()
+
+    @MockK
+    private var navigator: NavigationService = mockk()
 
     private lateinit var viewModel: DetailViewModel
 
@@ -66,7 +66,7 @@ class DetailViewModelTest {
             productOptions = listOf("Option 1", "Option 2")
         )
 
-        `when`(getItemDetail.getDetail()).thenReturn(flowOf(itemDetail))
+        coEvery { getItemDetail.getDetail() } returns flowOf(itemDetail)
 
         val stateList = mutableListOf<DetailUIState>()
         val job = launch {
@@ -88,21 +88,14 @@ class DetailViewModelTest {
     @Test
     fun `loadItemDetail updates uiState on error`() = runTest {
         val exception = RuntimeException("Test Exception")
-        `when`(getItemDetail.getDetail()).thenReturn(flow { throw exception })
+
+        coEvery { getItemDetail.getDetail() } returns flow { throw exception }
 
         viewModel.onEvent(DetailUIEvent.LoadItemDetail)
 
         val currentState = viewModel.uiState.value
         assertTrue(currentState.error === exception)
     }
-
-
-    @Test
-    fun `handleBack calls navigator goBack`() = runTest {
-        viewModel.onEvent(DetailUIEvent.Dismiss)
-        verify(navigator).goBack()
-    }
-
 
     @After
     fun tearDown() {

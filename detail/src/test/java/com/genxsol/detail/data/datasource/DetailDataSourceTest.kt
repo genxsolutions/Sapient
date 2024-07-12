@@ -4,26 +4,33 @@ import com.genxsol.core.model.GenericException
 import com.genxsol.detail.data.api.DetailApi
 import com.genxsol.detail.data.api.datasource.DetailDataSourceImpl
 import com.genxsol.detail.data.api.model.ItemDetailResponse
-import junit.framework.TestCase.assertEquals
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit4.MockKRule
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
+import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
 import retrofit2.Response
 
 class DetailDataSourceTest {
 
-    @Mock
+    @get:Rule
+    val mockkRule = MockKRule(this)
+
+    @MockK
     private lateinit var mockApi: DetailApi
 
     private lateinit var dataSource: DetailDataSourceImpl
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        MockKAnnotations.init(this)
         dataSource = DetailDataSourceImpl(mockApi)
     }
 
@@ -38,20 +45,21 @@ class DetailDataSourceTest {
             share = "share_text",
             subText = "sub_text"
         )
-        `when`(mockApi.getDetail()).thenReturn(Response.success(expectedResponse))
+        coEvery { mockApi.getDetail() } returns Response.success(expectedResponse)
 
         // Act
         val actualResponse = dataSource.getDetail()
 
         // Assert
         assertEquals(expectedResponse, actualResponse)
+        verify { runBlocking { mockApi.getDetail() } }
     }
 
     @Test(expected = GenericException::class)
     fun `getDetail throws GenericException when api call is unsuccessful`(): Unit = runBlocking {
         // Arrange
-        val errorResponse = Response.error<ItemDetailResponse>(404, ResponseBody.create(null, ""))
-        `when`(mockApi.getDetail()).thenReturn(errorResponse)
+        val errorResponse = Response.error<ItemDetailResponse>(404, ResponseBody.create("application/json".toMediaTypeOrNull(), ""))
+        coEvery { mockApi.getDetail() } returns errorResponse
 
         // Act & Assert
         dataSource.getDetail()
