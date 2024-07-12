@@ -21,4 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "SapiantTest"
 include(":app")
- 
+include(":core")
+include(":home")
+include(":list")
+include(":detail")
+include(":navigation")
+include(":network")
