@@ -3,47 +3,44 @@ package com.genxsol.sapiant
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.genxsol.detail.presentation.DetailScreen
+import com.genxsol.detail.presentation.DetailSearchScreen
+import com.genxsol.home.presentation.HomeScreen
+import com.genxsol.list.presentation.ListScreen
+import com.genxsol.navigation.AppNavigation
+import com.genxsol.navigation.Navigator
+import com.genxsol.navigation.graph.DetailScreens
 import com.genxsol.sapiant.ui.theme.SapiantTestTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navigator: Navigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             SapiantTestTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                AppNavigation(
+                    navigator = navigator,
+                    homeScreen = {
+                        HomeScreen()
+                    },
+                    listScreen = {
+                        ListScreen()
+                    },
+                    detailScreen = {// We can get args with "it" if we need
+                        DetailScreen()
+                    },
+                    detailScreenWithGraph = DetailScreens(
+                        detailMain = { DetailScreen() },
+                        detailSearch = { DetailSearchScreen() }
                     )
-                }
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SapiantTestTheme {
-        Greeting("Android")
     }
 }
