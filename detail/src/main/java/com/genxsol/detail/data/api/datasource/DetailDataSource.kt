@@ -1,6 +1,6 @@
-package com.example.detail.data.api.datasource
+package com.genxsol.detail.data.api.datasource
 
-import com.example.detail.data.api.model.ItemDetailResponse
+import com.genxsol.detail.data.api.model.ItemDetailResponse
 
 interface DetailDataSource {
     suspend fun getDetail(): ItemDetailResponse

@@ -1,4 +1,4 @@
-package com.example.detail.presentation.components
+package com.genxsol.detail.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,9 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.core.components.CoilImageComponent
-import com.example.detail.domain.model.ItemDetail
-import com.example.detail.presentation.uievent.DetailUIEvent
+import com.genxsol.core.components.CoilImageComponent
+import com.genxsol.detail.domain.model.ItemDetail
+import com.genxsol.detail.presentation.uievent.DetailUIEvent
 
 @Composable
 fun DetailContent(

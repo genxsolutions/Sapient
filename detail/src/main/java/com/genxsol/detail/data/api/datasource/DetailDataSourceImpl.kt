@@ -1,8 +1,8 @@
-package com.example.detail.data.api.datasource
+package com.genxsol.detail.data.api.datasource
 
-import com.example.network.extensions.handleCall
-import com.example.detail.data.api.DetailApi
-import com.example.detail.data.api.model.ItemDetailResponse
+import com.genxsol.network.extensions.handleCall
+import com.genxsol.detail.data.api.DetailApi
+import com.genxsol.detail.data.api.model.ItemDetailResponse
 import javax.inject.Inject
 
 internal class DetailDataSourceImpl @Inject constructor(

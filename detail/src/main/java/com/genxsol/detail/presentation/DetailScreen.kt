@@ -1,14 +1,14 @@
-package com.example.detail.presentation
+package com.genxsol.detail.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.core.components.ErrorComponent
-import com.example.core.components.LoadingComponent
-import com.example.detail.presentation.components.DetailContent
-import com.example.detail.presentation.uievent.DetailUIEvent
+import com.genxsol.core.components.ErrorComponent
+import com.genxsol.core.components.LoadingComponent
+import com.genxsol.detail.presentation.components.DetailContent
+import com.genxsol.detail.presentation.uievent.DetailUIEvent
 
 @Composable
 fun DetailScreen() {

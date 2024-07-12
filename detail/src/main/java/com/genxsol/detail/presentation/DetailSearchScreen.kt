@@ -1,4 +1,4 @@
-package com.example.detail.presentation
+package com.genxsol.detail.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

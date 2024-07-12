@@ -1,6 +1,6 @@
-package com.example.detail.data.api
+package com.genxsol.detail.data.api
 
-import com.example.detail.data.api.model.ItemDetailResponse
+import com.genxsol.detail.data.api.model.ItemDetailResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

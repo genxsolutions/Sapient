@@ -1,9 +1,9 @@
-package com.example.detail.data.domain_impl.mapper
+package com.genxsol.detail.data.domain_impl.mapper
 
-import com.example.detail.data.api.model.ItemDetailResponse
-import com.example.detail.data.api.model.OtherProductResponse
-import com.example.detail.domain.model.ItemDetail
-import com.example.detail.domain.model.OtherProducts
+import com.genxsol.detail.data.api.model.ItemDetailResponse
+import com.genxsol.detail.data.api.model.OtherProductResponse
+import com.genxsol.detail.domain.model.ItemDetail
+import com.genxsol.detail.domain.model.OtherProducts
 
 fun ItemDetailResponse.mapToItemDetail(): ItemDetail {
 

@@ -1,11 +1,11 @@
-package com.example.detail.presentation
+package com.genxsol.detail.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.example.core.navigation.NavigationService
-import com.example.core.presentation.StateAndEventViewModel
-import com.example.detail.domain.usecase.GetItemDetailUseCase
-import com.example.detail.presentation.state.DetailUIState
-import com.example.detail.presentation.uievent.DetailUIEvent
+import com.genxsol.core.navigation.NavigationService
+import com.genxsol.core.presentation.StateAndEventViewModel
+import com.genxsol.detail.domain.usecase.GetItemDetailUseCase
+import com.genxsol.detail.presentation.state.DetailUIState
+import com.genxsol.detail.presentation.uievent.DetailUIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart

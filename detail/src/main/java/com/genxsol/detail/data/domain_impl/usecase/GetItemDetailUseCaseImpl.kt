@@ -1,10 +1,10 @@
-package com.example.detail.data.domain_impl.usecase
+package com.genxsol.detail.data.domain_impl.usecase
 
-import com.example.core.utils.IODispatcher
-import com.example.detail.data.api.datasource.DetailDataSource
-import com.example.detail.data.domain_impl.mapper.mapToItemDetail
-import com.example.detail.domain.model.ItemDetail
-import com.example.detail.domain.usecase.GetItemDetailUseCase
+import com.genxsol.core.utils.IODispatcher
+import com.genxsol.detail.data.api.datasource.DetailDataSource
+import com.genxsol.detail.data.domain_impl.mapper.mapToItemDetail
+import com.genxsol.detail.domain.model.ItemDetail
+import com.genxsol.detail.domain.usecase.GetItemDetailUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

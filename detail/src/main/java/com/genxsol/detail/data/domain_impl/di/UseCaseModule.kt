@@ -1,9 +1,9 @@
-package com.example.detail.data.domain_impl.di
+package com.genxsol.detail.data.domain_impl.di
 
-import com.example.core.utils.IODispatcher
-import com.example.detail.data.api.datasource.DetailDataSource
-import com.example.detail.data.domain_impl.usecase.GetItemDetailUseCaseImpl
-import com.example.detail.domain.usecase.GetItemDetailUseCase
+import com.genxsol.core.utils.IODispatcher
+import com.genxsol.detail.data.api.datasource.DetailDataSource
+import com.genxsol.detail.data.domain_impl.usecase.GetItemDetailUseCaseImpl
+import com.genxsol.detail.domain.usecase.GetItemDetailUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

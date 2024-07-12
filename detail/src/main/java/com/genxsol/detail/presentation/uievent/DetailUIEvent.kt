@@ -1,4 +1,4 @@
-package com.example.detail.presentation.uievent
+package com.genxsol.detail.presentation.uievent
 
 sealed class DetailUIEvent {
     data object Dismiss : DetailUIEvent()

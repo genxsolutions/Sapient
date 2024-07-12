@@ -1,8 +1,8 @@
-package com.example.detail.data.api.di
+package com.genxsol.detail.data.api.di
 
-import com.example.detail.data.api.DetailApi
-import com.example.detail.data.api.datasource.DetailDataSource
-import com.example.detail.data.api.datasource.DetailDataSourceImpl
+import com.genxsol.detail.data.api.DetailApi
+import com.genxsol.detail.data.api.datasource.DetailDataSource
+import com.genxsol.detail.data.api.datasource.DetailDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

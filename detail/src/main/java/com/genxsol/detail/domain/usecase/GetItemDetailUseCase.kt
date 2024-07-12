@@ -1,6 +1,6 @@
-package com.example.detail.domain.usecase
+package com.genxsol.detail.domain.usecase
 
-import com.example.detail.domain.model.ItemDetail
+import com.genxsol.detail.domain.model.ItemDetail
 import kotlinx.coroutines.flow.Flow
 
 interface GetItemDetailUseCase {

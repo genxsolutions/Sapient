@@ -1,4 +1,4 @@
-package com.example.detail.data.api.model
+package com.genxsol.detail.data.api.model
 
 data class ItemDetailResponse(
     val productImage: String,
