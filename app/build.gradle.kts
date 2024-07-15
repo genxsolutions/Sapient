@@ -46,7 +46,6 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":home"))// just home Compose Screen
     implementation(project(":list")) // just list Compose Screen
-    implementation(project(":detail")) // just list Compose Screen
     implementation(project(":network"))
 
     //region D.I Dependencies

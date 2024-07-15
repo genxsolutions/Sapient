@@ -58,7 +58,6 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 listNameSpace = { id = "com.genxsol.list" }
 networkNameSpace = { id = "com.genxsol.network" }
-detailNameSpace = { id = "com.genxsol.detail" }
 coreNameSpace = { id = "com.genxsol.core" }
 mainNamespace = { id = "com.genxsol.sapiant" }
 navigationNameSpace = { id = "com.genxsol.navigation" }
