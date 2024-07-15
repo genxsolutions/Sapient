@@ -13,6 +13,7 @@ import io.mockk.junit4.MockKRule
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -80,7 +81,9 @@ class HomeDataSourceImplTest {
     @Test(expected = GenericException::class)
     fun `getHome throws GenericException when api call is unsuccessful`(): Unit = runBlocking {
         // Arrange
-        val errorResponse = Response.error<HomeResponse>(404, ResponseBody.create("application/json".toMediaTypeOrNull(), ""))
+        val errorResponse = Response.error<HomeResponse>(404,
+            "".toResponseBody("application/json".toMediaTypeOrNull())
+        )
         coEvery { mockApi.getHome() } returns errorResponse
 
         // Act & Assert

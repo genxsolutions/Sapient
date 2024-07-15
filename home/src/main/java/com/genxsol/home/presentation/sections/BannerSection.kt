@@ -40,8 +40,8 @@ fun BannerSection(bannerItems: List<BannerItem>, onBannerClick: (HomeUIEvent) ->
             contentScale = ContentScale.FillBounds,
             onClick = {
                 bannerItem.navigationData
-                ?.let { HomeUIEvent.OnBannerClicked }
-                ?.let { onBannerClick(it) }
+                    .let { HomeUIEvent.OnBannerClicked }
+                    .let { onBannerClick(it) }
             },
             contentDescription = "Banner Image"
         )

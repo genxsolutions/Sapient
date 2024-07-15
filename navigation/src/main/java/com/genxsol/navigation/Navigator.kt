@@ -1,6 +1,5 @@
 package com.genxsol.navigation
 
-import androidx.compose.runtime.Stable
 import androidx.navigation.NavOptionsBuilder
 import com.genxsol.core.navigation.NavigationService
 import com.genxsol.navigation.utils.DestinationRoute
