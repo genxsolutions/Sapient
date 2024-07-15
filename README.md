@@ -72,7 +72,7 @@ The Network Module is a critical component of the architecture, encompassing all
 git clone https://github.com/genxsolutions/Sapient.git
 cd Sapient
 ```
-- Build and run the Cakes App.
+- Build and run the App.
 ## App Screens:
 
 <div style="display: flex; justify-content: space-between;">
