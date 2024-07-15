@@ -51,4 +51,11 @@ dependencies {
     implementation(libs.coil)
     //endregion
 
+    //region test
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk.core)
+    testImplementation(libs.mockk.agent)
+    testImplementation(libs.android.test)
+    testImplementation(libs.coroutines.test)
+    //endregion
 }

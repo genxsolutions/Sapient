@@ -46,6 +46,7 @@ class HomeViewModelTest {
     fun tearDown() {
         Dispatchers.resetMain()
     }
+
     @Test
     fun `when LoadInitialHome event is handled, state should be updated correctly`() = runBlocking {
         val homeSections = HomeSections(
