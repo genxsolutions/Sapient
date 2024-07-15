@@ -11,6 +11,10 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     compileOptions {
@@ -58,4 +62,19 @@ dependencies {
     testImplementation(libs.android.test)
     testImplementation(libs.coroutines.test)
     //endregion
+
+    //region test
+    androidTestImplementation(libs.compose.ui.test.manifest)
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.mockk.core)
+    androidTestImplementation(libs.mockk.agent)
+
+    androidTestImplementation (libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.ksp.compiler)
+
+    //endregion
+
+    //androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.0")
+    //androidTestImplementation("androidx.compose.ui:ui-test-manifest:1.1.0")
+   // androidTestImplementation
 }

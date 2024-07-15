@@ -59,4 +59,9 @@ dependencies {
     testImplementation(libs.android.test)
     testImplementation(libs.coroutines.test)
     //endregion
+
+    //region test
+    androidTestImplementation(libs.compose.ui.test.manifest)
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    //endregion
 }

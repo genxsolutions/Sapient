@@ -46,4 +46,7 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.coil)
     //endregion
+
+    androidTestImplementation(libs.compose.ui.test.junit4)
+
 }
