@@ -3,6 +3,41 @@
 This project aims to demonstrate a feature-based modularization by managing the inter-feature dependencies through a dedicated navigation module and draws inspiration from Hexagonal Architecture and Clean Architecture to isolate the core of the application (domain logic or business logic) from other factors, allowing for a more flexible and decoupled system design.   
 ![1](https://github.com/genxsolutions/Sapient/blob/main/docs/architecture.png)
 
+## Major Highlights
+
+- **Jetpack Compose** for modern UI
+- **MVI architecture** for a clean and scalable codebase
+- **Kotlin** and **Kotlin DSL**
+- **Dagger Hilt** for efficient dependency injection.
+- **Retrofit** for seamless networking
+- **Coroutines** and **Flow** for asynchronous programming
+- **StateFlow** for streamlined state management
+- **Unit tests** and **UI tests** for robust code coverage
+- **Navigation** for smooth transitions between screens
+- **Coil** for efficient image loading
+- **multi module** just for concept of separating utilities into separate module (use android multimodule template for feature level separation)
+
+## Features Implemented
+
+- Show catelog group in sections like horizontal and vertical and banners
+- show bottom sheet to show descriptions of the item
+- show list of items in a category
+- accessibility support
+- dark and light mode support
+- config change handling
+- central dependency management
+- modularised concept
+
+## Features planned as backlog
+- **Pagination** to efficiently load and display cake list
+- **Offline caching** with a **single source of truth**
+- **Room DB** for local storage of cake listings
+- **work manager** for background caching
+- detailed testing and handling the low memory and restart scenarios
+- more UI and screenshot test coverage
+- parametreized detail page
+- error scenarios
+
 # Architecture Opinion
 
 The domain layer has a sole dependency on domain-impl. Within the data layer, structures like API and persistence are focused solely on their respective operations. The dependency of the domain on the data layer is mitigated through the use of mappers within the domain-impl. These mappers transform data responses into domain entities, thus decoupling the domain logic from the specifics of the data source implementations. This is a strategic design choice that preserves the purity of the domain layer, allowing it to evolve independently of the data layer changes and maintaining the domain model's integrity.
@@ -30,9 +65,19 @@ The Network Module is a critical component of the architecture, encompassing all
 
 ![1](https://github.com/genxsolutions/Sapient/blob/main/docs/dependencies-flow.png)
 
+## How to Run the Project
+
+- Clone the Repository:
+```
+git clone https://github.com/genxsolutions/Sapient.git
+cd Sapient
+```
+- Build and run the Cakes App.
 ## App Screens:
 
-![1](https://github.com/genxsolutions/Sapient/blob/main/docs/home.png)
-![1](https://github.com/genxsolutions/Sapient/blob/main/docs/list.png)
-![1](https://github.com/genxsolutions/Sapient/blob/main/docs/detail-sheet.png)
+<div style="display: flex; justify-content: space-between;">
+    <img alt="Home screen"  src="https://github.com/genxsolutions/Sapient/blob/main/docs/home.png" width="400" height="600">
+    <img alt="List screen" src="https://github.com/genxsolutions/Sapient/blob/main/docs/list.png" width="400" height="600">
+    <img alt="detail sheet" src="https://github.com/genxsolutions/Sapient/blob/main/docs/detail-sheet.png" width="400" height="600">
+ </div>
  
